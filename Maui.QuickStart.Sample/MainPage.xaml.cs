@@ -20,5 +20,11 @@ public partial class MainPage : ContentPage
 
 		SemanticScreenReader.Announce(CounterBtn.Text);
 	}
-}
 
+	private void OnMultiplesBtnClicked(object sender, EventArgs e)
+	{
+		MultiplesBtn.Text = $"Clicked x2 equals {count * 2}";
+
+		SemanticScreenReader.Announce(MultiplesBtn.Text);
+	}
+}
