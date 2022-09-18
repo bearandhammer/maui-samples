@@ -1,4 +1,4 @@
-namespace Maui.NoteTaker.Sample;
+namespace Maui.NoteTaker.Sample.Views;
 
 public partial class AboutPage : ContentPage
 {
