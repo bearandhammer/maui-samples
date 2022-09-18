@@ -10,10 +10,10 @@ public partial class NotePage : ContentPage
     {
         InitializeComponent();
 
-        if (File.Exists(fileName))
-        {
-            TextEditor.Text = File.ReadAllText(fileName);
-        }
+        string appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+        string randomFileName = $"{Path.GetRandomFileName()}.notes.txt";
+
+        LoadNote(Path.Combine(appDataPath, randomFileName));
     }
 
     private void DeleteButton_Clicked(object sender, EventArgs e)
