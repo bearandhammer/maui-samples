@@ -1,3 +1,5 @@
+using Maui.NoteTaker.Sample.Models;
+
 namespace Maui.NoteTaker.Sample.Views;
 
 public partial class NotePage : ContentPage
@@ -29,5 +31,21 @@ public partial class NotePage : ContentPage
     {
         // Save the file.
         File.WriteAllText(fileName, TextEditor.Text);
+    }
+
+    private void LoadNote(string fileName)
+    {
+        Note noteModel = new Note
+        {
+            Filename = fileName
+        };
+
+        if (File.Exists(noteModel.Filename))
+        {
+            noteModel.Date = File.GetCreationTime(fileName);
+            noteModel.Text = File.ReadAllText(fileName);
+        }
+
+        BindingContext = noteModel;
     }
 }
