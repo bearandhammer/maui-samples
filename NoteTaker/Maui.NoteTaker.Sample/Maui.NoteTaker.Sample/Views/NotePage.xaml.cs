@@ -2,6 +2,7 @@ using Maui.NoteTaker.Sample.Models;
 
 namespace Maui.NoteTaker.Sample.Views;
 
+[QueryProperty(nameof(ItemId), nameof(ItemId))]
 public partial class NotePage : ContentPage
 {
     private readonly string fileName = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData), "notes.txt");
@@ -16,21 +17,36 @@ public partial class NotePage : ContentPage
         LoadNote(Path.Combine(appDataPath, randomFileName));
     }
 
-    private void DeleteButton_Clicked(object sender, EventArgs e)
+    public string ItemId
     {
-        // Delete the file.
-        if (File.Exists(fileName))
-        {
-            File.Delete(fileName);
+        set 
+        { 
+            LoadNote(value); 
         }
-
-        TextEditor.Text = string.Empty;
     }
 
-    private void SaveButton_Clicked(object sender, EventArgs e)
+    private async void DeleteButton_Clicked(object sender, EventArgs e)
     {
-        // Save the file.
-        File.WriteAllText(fileName, TextEditor.Text);
+        if (BindingContext is Models.Note note)
+        {
+            // Delete the file.
+            if (File.Exists(note.Filename))
+            {
+                File.Delete(note.Filename);
+            }
+        }
+
+        await Shell.Current.GoToAsync("..");
+    }
+
+    private async void SaveButton_Clicked(object sender, EventArgs e)
+    {
+        if (BindingContext is Models.Note note)
+        {
+            File.WriteAllText(note.Filename, TextEditor.Text);
+        }
+
+        await Shell.Current.GoToAsync("..");
     }
 
     private void LoadNote(string fileName)
