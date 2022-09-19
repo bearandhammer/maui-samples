@@ -5,6 +5,7 @@
              x:Class="Maui.QuickStart.Sample.App">
     <Application.Resources>
         <ResourceDictionary>
+            <!--Introduce a merged dictionary (general styles and a color palette for use in the application)-->
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
