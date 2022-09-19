@@ -8,6 +8,7 @@ public partial class AppShell : Shell
 	{
 		InitializeComponent();
 
+		// For things not automatically registered (e.g. in the TabBar as ShellContent) we need to manually define routing
 		Routing.RegisterRoute(nameof(NotePage), typeof(NotePage));
 	}
 }
