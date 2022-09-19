@@ -2,13 +2,25 @@
 
 namespace Maui.NoteTaker.Sample.Models
 {
+    /// <summary>
+    /// Internal class acting as a model for the AllNotesPage.
+    /// </summary>
     internal class AllNotes
     {
-        public ObservableCollection<Note> Notes { get; set; } = new ObservableCollection<Note>();
+        /// <summary>
+        /// Initializes a new instance of the <see cref="AllNotes"/> class.
+        /// </summary>
+        internal AllNotes() => LoadNotes();
 
-        public AllNotes() => LoadNotes();
+        /// <summary>
+        /// Gets or sets the Notes to show on the AllNotesPage.
+        /// </summary>
+        internal ObservableCollection<Note> Notes { get; set; } = new ObservableCollection<Note>();
 
-        public void LoadNotes()
+        /// <summary>
+        /// Public utility method responsible for loading notes (stored as a file on the device).
+        /// </summary>
+        internal void LoadNotes()
         {
             Notes.Clear();
 
@@ -20,7 +32,7 @@ namespace Maui.NoteTaker.Sample.Models
                 // Select the file names from the directory
                 .EnumerateFiles(appDataPath, "*.notes.txt")
                 // Each file name is used to create a new Note
-                .Select(filename => new Note()
+                .Select(filename => new Note
                 {
                     Filename = filename,
                     Text = File.ReadAllText(filename),
