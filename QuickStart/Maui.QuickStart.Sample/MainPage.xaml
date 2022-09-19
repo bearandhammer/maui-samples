@@ -43,6 +43,7 @@
                 Clicked="OnCounterClicked"
                 HorizontalOptions="Center" />
 
+            <!--Experimentation with a further, custom button-->
             <Button
                 x:Name="MultiplesBtn"
                 Text="Click me too!"
