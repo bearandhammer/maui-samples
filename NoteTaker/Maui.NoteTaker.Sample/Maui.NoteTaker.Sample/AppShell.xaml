@@ -6,6 +6,7 @@
     xmlns:views="clr-namespace:Maui.NoteTaker.Sample.Views"
     Shell.FlyoutBehavior="Disabled">
 
+    <!--Define the visually hierarchy of the application-->
     <TabBar>
         <ShellContent
             Title="Notes"
